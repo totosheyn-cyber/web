@@ -27,4 +27,7 @@ def react(i, emoji):
     confessions[i]["reactions"][emoji] += 1
     return redirect("/")
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
+
+
