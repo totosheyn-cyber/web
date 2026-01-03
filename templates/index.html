@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anonymous Confessions</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="emoji-bg">💔 😔 ❤️ 😌 🫶 🥺</div>
+
+<h1>Anonymous Confessions</h1>
+
+<form method="POST">
+    <textarea name="confession" placeholder="Write your feelings here..." required></textarea>
+    <br><br>
+
+    <label>Your emotion:</label>
+    <select name="emotion">
+        <option>💔</option>
+        <option>😔</option>
+        <option>❤️</option>
+        <option>😌</option>
+        <option>🥺</option>
+    </select>
+
+    <br><br>
+    <button type="submit">Confess</button>
+</form>
+
+<hr>
+
+{% for c in confessions %}
+<div class="card">
+    <h2>{{ c.emotion }}</h2>
+    <p>{{ c.text }}</p>
+    <small>{{ c.time }}</small>
+    <br><br>
+
+    {% for e, count in c.reactions.items() %}
+        <a href="/react/{{ loop.index0 }}/{{ e }}">{{ e }} {{ count }}</a>
+    {% endfor %}
+</div>
+{% endfor %}
+
+</body>
+</html>
